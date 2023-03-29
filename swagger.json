@@ -27,21 +27,49 @@
     "/hello": {
       "post": {
         "description": "Hello World",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "example": "John"
+        "parameters": {
+          "name": "name",
+          "in": "query",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "John"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Hello World",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Hello John!"
+                    }
                   }
                 }
               }
             }
           }
-        },
+        }
+      }
+    },
+    "/hello/{name}": {
+      "put": {
+        "description": "Hello World",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "John"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Hello World",
